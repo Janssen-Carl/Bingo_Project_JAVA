@@ -1,11 +1,13 @@
 package main;
 
 public class Game {
-      public void startNewGame() {
-            // start a new game
-      }
+    public static void startNewGame() {
+        System.out.println("Starting a new game...");
+        // Initialize game logic here
+    }
 
-      public void loadSavedGame() {
-            // load a saved game
-      }
+    public static void continueGame() {
+        System.out.println("Continuing game...");
+        // Load saved state and resume
+    }
 }
