@@ -1,8 +1,6 @@
 package utils;
 
-import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStreamReader;
 import java.util.Scanner;
 
 public class ScreenUtils {
@@ -19,21 +17,31 @@ public class ScreenUtils {
       } catch (IOException | InterruptedException ex) {
          System.err.println("Error clearing the screen: " + ex.getMessage());
       }
+      
+      newLine();
    }
    
    //waits and Enter key press
    public static void waitForEnter() {
-      System.out.println("Press Enter to continue...");
-      try (BufferedReader reader = new BufferedReader(new InputStreamReader(System.in))) {
-         reader.readLine();
+      System.out.print("Press Enter to continue...");
+      try {
+         System.in.read(); // Reads a single byte from the input stream
       } catch (IOException e) {
-         System.err.println("Error reading input: " + e.getMessage());
+         System.err.println("Error waiting for Enter key: " + e.getMessage());
       }
    }
    
    //flushes input stream
    public static void flushInputStream(Scanner scanner) {
-      scanner.nextLine();
+      if (scanner.hasNextLine()) {
+         scanner.nextLine();
+      }
    }
    
+   public static void newLine() {
+      System.out.println();
+      System.out.println();
+      System.out.println();
+      System.out.println();
+   }
 }

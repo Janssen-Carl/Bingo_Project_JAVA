@@ -2,6 +2,8 @@ package menu;
 
 import java.util.NoSuchElementException;
 import java.util.Scanner;
+
+
 import leaderboard.Leaderboard;
 import main.Game;
 import utils.ScreenUtils;
@@ -19,10 +21,10 @@ public class MenuManager {
     
     public void menuLoop(){
         int choice = 0;
+        
         while(choice != 4){
             ScreenUtils.clearScreen();
-            ScreenUtils.flushInputStream(scanner);
-            
+
             System.out.println("Main Menu");
             System.out.println("1. Start New Game");
             System.out.println("2. Continue");
@@ -30,23 +32,18 @@ public class MenuManager {
             System.out.println("4. Exit");
             
             System.out.print("Enter your choice: ");
+            choice = scanner.nextInt();
             
             try {
-                if (scanner.hasNextInt()) {
-                    choice = scanner.nextInt();
-                    if (choice < 1 || choice > 4) {
-                        ScreenUtils.clearScreen();
-                        System.out.println("Invalid choice. Try again.");
-                    } else {
-                        handleMenuChoice(choice);
-                    }
+                if(choice < 1 || choice > 4){
+                    System.out.println("Invalid choice. Try again.");
+                    ScreenUtils.waitForEnter(); // Pause to allow user to read
                 } else {
-                    System.out.println("Invalid input. Please enter a number.");
-                    scanner.nextLine(); // Clear the invalid input
+                    handleMenuChoice(choice);
                 }
-            } catch (NoSuchElementException | IllegalStateException e) {
-                System.out.println("Error reading input. Please try again.");
-                scanner.nextLine(); // Clear the invalid input
+            } catch (NoSuchElementException e) {
+                  System.out.println("Invalid input. Please enter a number.");
+                  ScreenUtils.waitForEnter(); // Pause to allow user to read
             }
             
             ScreenUtils.flushInputStream(scanner);
@@ -54,12 +51,19 @@ public class MenuManager {
     }
 
     private void handleMenuChoice(int choice) {
+
         switch (choice) {
             case 1 -> Game.startNewGame();
             case 2 -> Game.continueGame();
             case 3 -> Leaderboard.showLeaderboard();
             case 4 -> Game.exitGame();
         }
+    }
+    
+    public void displayExitMessage() {
+        ScreenUtils.clearScreen();
+        System.out.println("Thank you for playing Bingo Game!");
+        ScreenUtils.waitForEnter();
     }
     
     
