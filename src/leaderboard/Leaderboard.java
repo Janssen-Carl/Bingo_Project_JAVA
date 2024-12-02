@@ -1,7 +1,8 @@
 package leaderboard;
 
 public class Leaderboard {
-      void displayLeaderboard(){
-            // Display the leader board
-      }
+    public static void showLeaderboard() {
+        System.out.println("Displaying leaderboard...");
+        // Leaderboard logic
+    }
 }
