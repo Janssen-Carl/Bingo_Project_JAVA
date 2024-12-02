@@ -10,4 +10,9 @@ public class Game {
         System.out.println("Continuing game...");
         // Load saved state and resume
     }
+    
+    public static void exitGame() {
+        System.out.println("Exiting game...");
+        System.exit(0);
+    }
 }
