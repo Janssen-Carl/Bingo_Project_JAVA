@@ -1,6 +1,5 @@
 package game;
 
-import models.BingoCard;
 import models.Player;
 import patterns.Pattern;
 import utils.ScreenUtils;
@@ -66,15 +65,15 @@ public class GameLoop {
    
    private static void updatePlayerCards(List<Player> players, int drawnChip, Pattern pattern) {
       for (Player player : players) {
-         BingoCard card = player.getCard();
-         card.markNumber(drawnChip); // Mark the number if it exists on the card
+         player.markNumber(drawnChip); // Mark the number in the player's card
          
-         // Check if the card matches the selected pattern
-         if (pattern.matches(card) && !winners.contains(player)) {
+         // Check if the player's marked indices match the pattern
+         if (pattern.matches(player.getMarkedIndices()) && !winners.contains(player)) {
             winners.add(player);
          }
       }
    }
+   
    
    private static void displayPlayerCards(List<Player> players) {
       for (Player player : players) {

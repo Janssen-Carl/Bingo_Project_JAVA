@@ -1,54 +1,29 @@
 package patterns;
 
-import models.BingoCard;
+import java.util.HashSet;
 import java.util.Random;
+import java.util.Set;
 
 public class RandomPattern implements Pattern {
-   private static final int SIZE = 5; // Fixed size for standard Bingo
-   private final boolean[][] randomPattern;
+   private final Set<Integer> randomIndices = new HashSet<>();
    
    public RandomPattern() {
-      this.randomPattern = generateRandomPattern();
+      generateRandomIndices();
+   }
+   
+   private void generateRandomIndices() {
+      Random random = new Random();
+      while (randomIndices.size() < 5) { // Generate a pattern of 5 indices
+         randomIndices.add(random.nextInt(25)); // Random numbers 0-24
+      }
    }
    
    @Override
-   public boolean matches(BingoCard card) {
-      boolean[][] marked = card.getMarked();
-      
-      for (int row = 0; row < SIZE; row++) {
-         for (int col = 0; col < SIZE; col++) {
-            if (randomPattern[row][col] && !marked[row][col]) {
-               return false;
-            }
-         }
-      }
-      return true;
-   }
-   
-   private boolean[][] generateRandomPattern() {
-      boolean[][] pattern = new boolean[SIZE][SIZE];
-      Random random = new Random();
-      
-      // Randomly mark cells in the pattern
-      for (int row = 0; row < SIZE; row++) {
-         for (int col = 0; col < SIZE; col++) {
-            pattern[row][col] = random.nextBoolean();
-         }
-      }
-      
-      // Ensure at least one cell is marked in the pattern
-      pattern[random.nextInt(SIZE)][random.nextInt(SIZE)] = true;
-      
-      return pattern;
+   public boolean matches(Set<Integer> markedIndices) {
+      return markedIndices.containsAll(randomIndices);
    }
    
    public void displayPattern() {
-      System.out.println("Random Pattern:");
-      for (boolean[] row : randomPattern) {
-         for (boolean cell : row) {
-            System.out.print(cell ? "X " : ". ");
-         }
-         System.out.println();
-      }
+      System.out.println("Random Pattern Indices: " + randomIndices);
    }
 }

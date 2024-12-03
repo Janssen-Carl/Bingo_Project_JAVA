@@ -1,17 +1,13 @@
 package patterns;
 
-import models.BingoCard;
+import java.util.Set;
+import java.util.stream.IntStream;
 
 public class FullCardPattern implements Pattern {
+   private static final Set<Integer> FULL_CARD = IntStream.range(0, 25).boxed().collect(java.util.stream.Collectors.toSet());
    
    @Override
-   public boolean matches(BingoCard card) {
-      boolean[][] marked = card.getMarked();
-      for (boolean[] row : marked) {
-         for (boolean cell : row) {
-            if (!cell) return false;
-         }
-      }
-      return true;
+   public boolean matches(Set<Integer> markedIndices) {
+      return markedIndices.containsAll(FULL_CARD);
    }
 }
