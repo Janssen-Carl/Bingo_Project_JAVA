@@ -1,24 +1,14 @@
 package models;
 
-import java.util.ArrayList;
-import java.util.List;
-
-
 public class Player {
       private String name;
-      private final List<BingoCard> cards;
+      private BingoCard card;
       
-      public Player(){
-            this.name = "Player";
-            this.cards = new ArrayList<>();
+      public Player() {
       }
       
-      public Player(String name, int numCards, NumberTracker tracker) {
+      public Player(String name) {
             this.name = name;
-            this.cards = new ArrayList<>();
-            for (int i = 0; i < numCards; i++) {
-                  this.cards.add(new BingoCard(tracker)); // Generate unique cards
-            }
       }
       
       public String getName() {
@@ -29,24 +19,15 @@ public class Player {
             this.name = name;
       }
       
-      public List<BingoCard> getCards() {
-            return cards;
+      public BingoCard getCard() {
+            return card;
       }
       
-      public void generateCards(int numCards, NumberTracker tracker) {
-            cards.clear(); // Clear existing cards
-            for (int i = 0; i < numCards; i++) {
-                  cards.add(new BingoCard(tracker)); // Generate cards
-            }
+      public void generateCard(NumberTracker tracker) {
+            this.card = new BingoCard(tracker); // Generate a single Bingo card
       }
       
-      public void displayCards() {
-            System.out.println(name + "'s Bingo Cards:");
-            for (int i = 0; i < cards.size(); i++) {
-                  System.out.println("Card " + (i + 1) + ":");
-                  cards.get(i).displayCard();
-                  System.out.println(); // Space between cards
-            }
+      public void displayCard() {
+            card.displayCard();
       }
-      
 }

@@ -15,6 +15,11 @@ public class ScreenUtils {
       scanner.nextLine();
    }
    
+   public static void waitForEnter(String message) {
+      System.out.println(message);
+      scanner.nextLine();
+   }
+   
    public static int getIntInput() {
       while (!scanner.hasNextInt()) {
          System.out.println("Invalid input. Enter a number:");

@@ -1,6 +1,5 @@
 package menu;
 
-import leaderboard.Leaderboard;
 import utils.ScreenUtils;
 import game.Game;
 
@@ -16,16 +15,14 @@ public class MenuManager {
             System.out.println("Main Menu");
             System.out.println("1. Play");
             System.out.println("2. Instructions");
-            System.out.println("3. Leaderboard");
-            System.out.println("4. Exit");
+            System.out.println("3. Exit");
             System.out.print("Enter your choice: ");
             
             choice = ScreenUtils.getIntInput();
             switch (choice) {
                 case 1 -> Game.start();
                 case 2 -> Game.displayInstructions();
-                case 3 -> Leaderboard.show();
-                case 4 -> Game.exitGame();
+                case 3 -> Game.exitGame();
                 default -> printInvalidChoice();
             }
         }

@@ -34,11 +34,6 @@ if 1 is selected
 
             -- PLAYER VS PLAYER --
             -- BINGO CARD --
-            1. 1 Card
-            2. 2 Cards
-            3. Input Number of Cards (Max 10):
-            Enter your choice:
-                if 1 or 2 is selected
                     clear screen
 
                     -- PLAYER VS PLAYER --
@@ -47,120 +42,21 @@ if 1 is selected
                     Generate Bingo Cards
                     Display Bingo Cards
 
-                    are you satisfied with the cards? (Y/N)
+                    are you satisfied with the card? (Y/N)
                         if Y continue
                         if N regenerate cards (loop until Y)
-
-                    clear screen
-
-                    -- PLAYER VS PLAYER --
-                    -- BINGO CARD --
-                    Player 2 name's cards:
-                    Generate Bingo Cards
-                    Display Bingo Cards
-
-                    are you satisfied with the cards? (Y/N)
-                        if Y continue
-                        if N regenerate cards (loop until Y)
-
-                    clear screen
-
-                    press ENTER to continue
-                    GO TO PATTERN SELECTION LOOP
-
-
-                if 3 is selected
-                    clear screen
-
-                    -- PLAYER VS PLAYER --
-                    -- BINGO CARD --
-                    Player 1 name's cards:
-                    Generate Bingo Cards
-                    Display Bingo Cards
-
-                    are you satisfied with the cards? (Y/N)
-                        if Y continue
-                        if N regenerate cards (loop until Y)
-
-                    clear screen
-
-                    -- PLAYER VS PLAYER --
-                    -- BINGO CARD --
-                    Player 2 name's cards:
-                    Generate Bingo Cards
-                    Display Bingo Cards
-
-                    are you satisfied with the cards? (Y/N)
-                        if Y continue
-                        if N regenerate cards (loop until Y)
-
-                    clear screen
-
-                    press ENTER to continue
-                    GO TO PATTERN SELECTION LOOP
 
         if 2 is selected
             clear screen
             -- PLAYER VS COMPUTER --
             -- BINGO CARD --
-            1. 1 Card
-            2. 2 Cards
-            3. Input Number of Cards (Max 10):
-
-            Enter your choice:
-                if 1 or 2 is selected
-                    clear screen
-
-                    -- PLAYER VS COMPUTER --
-                    -- BINGO CARD --
                     Player 1 name's cards:
                     Generate Bingo Cards
                     Display Bingo Cards
 
-                    are you satisfied with the cards? (Y/N)
+                    are you satisfied with the card? (Y/N)
                         if Y continue
                         if N regenerate cards (loop until Y)
-
-                    clear screen
-
-                    -- PLAYER VS COMPUTER --
-                    -- BINGO CARD --
-                    Computer's cards:
-                    Generate Bingo Cards
-                    Display Bingo Cards
-
-                    clear screen
-
-                    press ENTER to start the game
-                    GO TO PATTERN SELECTION LOOP
-
-
-                if 3 is selected
-                    clear screen
-
-                    -- PLAYER VS COMPUTER --
-                    -- BINGO CARD --
-                    Player 1 name's cards:
-                    Generate Bingo Cards
-                    Display Bingo Cards
-
-                    are you satisfied with the cards? (Y/N)
-                        if Y continue
-                        if N regenerate cards (loop until Y)
-
-                    clear screen
-
-                    -- PLAYER VS COMPUTER --
-                    -- BINGO CARD --
-                    Computer's cards:
-                    Generate Bingo Cards
-                    Display Bingo Cards
-
-                    clear screen
-
-                    press ENTER to start the game
-                    GO TO PATTERN SELECTION LOOP
-
 
 
             // PATTERN SELECTION LOOP
@@ -172,7 +68,6 @@ if 1 is selected
             2. Four Corners
             3. Full Card
             4. Generate Random Pattern
-            5. Custom Pattern
 
             Enter your choice:
                 if 1 is selected

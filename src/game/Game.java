@@ -3,6 +3,11 @@ package game;
 import models.NumberTracker;
 import models.Player;
 import utils.ScreenUtils;
+import patterns.*;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Scanner;
 
 public class Game {
    public static void start() {
@@ -16,9 +21,92 @@ public class Game {
       switch (mode) {
          case 1 -> startPlayerVsPlayer();
          case 2 -> startPlayerVsComputer();
-         case 3 -> System.out.println("return ka sa main menu");
-         default -> System.out.println("Invalid choice.");
+         case 3 -> {
+            System.out.println("Returning to main menu...");
+            ScreenUtils.waitForEnter();
+         }
+         default -> {
+            System.out.println("Invalid choice.");
+            ScreenUtils.waitForEnter("Press Enter to try again...");
+            start();
+         }
       }
+   }
+   
+   
+   private static void startPlayerVsPlayer() {
+      NumberTracker tracker = new NumberTracker();
+      
+      Player player1 = new Player();
+      Player player2 = new Player();
+      
+      System.out.println("PLAYER VS PLAYER");
+      System.out.print("Enter Player 1's name: ");
+      player1.setName(ScreenUtils.getStringInput());
+      
+      System.out.print("Enter Player 2's name: ");
+      player2.setName(ScreenUtils.getStringInput());
+      
+      System.out.println(player1.getName() + " vs " + player2.getName());
+      
+      player1.generateCard(tracker);
+      player2.generateCard(tracker);
+      
+      System.out.println(player1.getName() + "'s card:");
+      player1.displayCard();
+      
+      System.out.println(player2.getName() + "'s card:");
+      player2.displayCard();
+      
+      Pattern pattern = selectPattern();
+      
+      // Proceed to gameplay
+      ScreenUtils.waitForEnter("Press Enter to start the game...");
+      
+      // Game loop
+      List<Player> players = new ArrayList<>();
+      
+      players.add(player1);
+      players.add(player2);
+      
+      
+      GameLoop.startGame(players, pattern);
+   }
+   
+   
+   public static Pattern selectPattern() {
+      Scanner scanner = new Scanner(System.in);
+      
+      System.out.println("-- PATTERN SELECTION --");
+      System.out.println("1. Line Pattern (Horizontal/Vertical/Diagonal)");
+      System.out.println("2. Four Corners");
+      System.out.println("3. Full Card");
+      System.out.println("4. Generate Random Pattern");
+      System.out.print("Choose a pattern (1-4): ");
+      
+      int choice = scanner.nextInt();
+      
+      switch (choice) {
+         case 1:
+            return new LinePattern();
+         case 2:
+            return new FourCornersPattern();
+         case 3:
+            return new FullCardPattern();
+         case 4:
+            RandomPattern randomPattern = new RandomPattern();
+            randomPattern.displayPattern(); // Display the generated pattern
+            return randomPattern;
+         default:
+            System.out.println("Invalid choice, defaulting to Line Pattern.");
+            return new LinePattern();
+      }
+   }
+   
+   private static void startPlayerVsComputer() {
+      // Game logic for Player vs Computer
+      System.out.println("Player vs Computer mode not implemented yet.");
+      ScreenUtils.waitForEnter();
    }
    
    public static void exitGame() {
@@ -31,85 +119,4 @@ public class Game {
       System.out.println("Instructions:\nPlay Bingo and achieve the pattern to win!");
       ScreenUtils.waitForEnter();
    }
-   
-   private static void startPlayerVsPlayer() {
-//      System.out.print("PLayer vs Player");
-//      ScreenUtils.waitForEnter();
-      
-      NumberTracker tracker = new NumberTracker();
-      
-      Player player1 = new Player();
-      Player player2 = new Player();
-      
-      System.out.println("PLAYER VS PLAYER");
-      System.out.print("Enter Player 1's name:  ");
-      String player1Name = ScreenUtils.getStringInput();
-      player1.setName(player1Name);
-      
-      System.out.print("Enter Player 2's name:  ");
-      String player2Name = ScreenUtils.getStringInput();
-      player2.setName(player2Name);
-      
-      System.out.println(player1.getName() + " vs " + player2.getName());
-      System.out.println("BINGO CARD");
-      System.out.println("1. 1 Card");
-      System.out.println("2. 2 Cards");
-      System.out.println("3. Input number of cards");
-      
-      System.out.print("Enter your choice: ");
-      int numCards = ScreenUtils.getIntInput();
-      // generate cards
-      if (numCards == 1) {
-         player1.generateCards(1, tracker);
-         player2.generateCards(1, tracker);
-      } else if (numCards == 2) {
-         player1.generateCards(2, tracker);
-         player2.generateCards(2, tracker);
-      } else {
-         System.out.print("Enter the number of cards (max 10): ");
-         int customCards = ScreenUtils.getIntInput();
-         player1.generateCards(customCards, tracker);
-         player2.generateCards(customCards, tracker);
-      }
-      
-      // Display and confirm cards
-      confirmCards(player1, tracker);
-      confirmCards(player2, tracker);
-      
-      // Proceed to the next step
-      ScreenUtils.waitForEnter();
-   }
-   
-   private static void confirmCards(Player player, NumberTracker tracker) {
-      ScreenUtils.clearScreen();
-      String choice;
-      
-      player.displayCards();
-      System.out.print("Are you satisfied with these cards? (Y/N): ");
-      
-      choice = ScreenUtils.getStringInput().trim();
-      
-      if (choice.equalsIgnoreCase("Y")) {
-         ScreenUtils.waitForEnter();
-      } else if (choice.equalsIgnoreCase("N")) {
-         player.generateCards(player.getCards().size(), tracker);// Regenerate cards
-         
-         player.displayCards();
-         ScreenUtils.waitForEnter();
-      } else {
-         System.out.println("Invalid input. Please enter Y or N."); // Handle unexpected input
-         ScreenUtils.waitForEnter();
-      }
-      
-   }
-   
-   private static void startPlayerVsComputer() {
-      // Game logic for Player vs Computer
-      System.out.print("PLayer vs Computer");
-      ScreenUtils.waitForEnter();
-      
-   }
-   
-   
-   
 }
