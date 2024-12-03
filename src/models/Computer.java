@@ -7,9 +7,9 @@ public class Computer {
    public Computer(int numCards) {
       this.name = name;
       this.cards = new BingoCard[numCards];
-      for (int i = 0; i < numCards; i++) {
-         cards[i] = new BingoCard();
-      }
+//      for (int i = 0; i < numCards; i++) {
+//         cards[i] = new BingoCard();
+//      }
    }
    
    public String getName() {

@@ -1,5 +1,6 @@
 package game;
 
+import models.NumberTracker;
 import models.Player;
 import utils.ScreenUtils;
 
@@ -35,6 +36,7 @@ public class Game {
 //      System.out.print("PLayer vs Player");
 //      ScreenUtils.waitForEnter();
       
+      NumberTracker tracker = new NumberTracker();
       
       Player player1 = new Player();
       Player player2 = new Player();
@@ -56,25 +58,49 @@ public class Game {
       
       System.out.print("Enter your choice: ");
       int numCards = ScreenUtils.getIntInput();
+      // generate cards
       if (numCards == 1) {
-         player1 = new Player(player1Name, 1);
-         
-         // how do i generate cards?
-         
-         player2 = new Player(player2Name, 1);
-         
-         
+         player1.generateCards(1, tracker);
+         player2.generateCards(1, tracker);
       } else if (numCards == 2) {
-         player1 = new Player(player1Name, 2);
-         player2 = new Player(player2Name, 2);
+         player1.generateCards(2, tracker);
+         player2.generateCards(2, tracker);
       } else {
-         System.out.print("Enter number of cards: ");
-         int cards = ScreenUtils.getIntInput();
-         player1 = new Player(player1Name, cards);
-         player2 = new Player(player2Name, cards);
+         System.out.print("Enter the number of cards (max 10): ");
+         int customCards = ScreenUtils.getIntInput();
+         player1.generateCards(customCards, tracker);
+         player2.generateCards(customCards, tracker);
       }
       
+      // Display and confirm cards
+      confirmCards(player1, tracker);
+      confirmCards(player2, tracker);
+      
+      // Proceed to the next step
       ScreenUtils.waitForEnter();
+   }
+   
+   private static void confirmCards(Player player, NumberTracker tracker) {
+      ScreenUtils.clearScreen();
+      String choice;
+      
+      player.displayCards();
+      System.out.print("Are you satisfied with these cards? (Y/N): ");
+      
+      choice = ScreenUtils.getStringInput().trim();
+      
+      if (choice.equalsIgnoreCase("Y")) {
+         ScreenUtils.waitForEnter();
+      } else if (choice.equalsIgnoreCase("N")) {
+         player.generateCards(player.getCards().size(), tracker);// Regenerate cards
+         
+         player.displayCards();
+         ScreenUtils.waitForEnter();
+      } else {
+         System.out.println("Invalid input. Please enter Y or N."); // Handle unexpected input
+         ScreenUtils.waitForEnter();
+      }
+      
    }
    
    private static void startPlayerVsComputer() {
@@ -83,4 +109,7 @@ public class Game {
       ScreenUtils.waitForEnter();
       
    }
+   
+   
+   
 }

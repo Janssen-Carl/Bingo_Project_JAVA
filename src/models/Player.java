@@ -1,19 +1,23 @@
 package models;
 
+import java.util.ArrayList;
+import java.util.List;
+
+
 public class Player {
       private String name;
-      private final BingoCard[] cards;
+      private final List<BingoCard> cards;
       
       public Player(){
             this.name = "Player";
-            this.cards = new BingoCard[1];
+            this.cards = new ArrayList<>();
       }
       
       public Player(String name, int numCards, NumberTracker tracker) {
             this.name = name;
-            this.cards = new BingoCard[numCards];
+            this.cards = new ArrayList<>();
             for (int i = 0; i < numCards; i++) {
-                  this.cards[i] = new BingoCard(tracker); // Use the shared tracker
+                  this.cards.add(new BingoCard(tracker)); // Generate unique cards
             }
       }
       
@@ -21,12 +25,28 @@ public class Player {
             return name;
       }
       
-      public BingoCard[] getCards() {
+      public void setName(String name) {
+            this.name = name;
+      }
+      
+      public List<BingoCard> getCards() {
             return cards;
       }
       
-      public void setName(String name) {
-            this.name = name;
+      public void generateCards(int numCards, NumberTracker tracker) {
+            cards.clear(); // Clear existing cards
+            for (int i = 0; i < numCards; i++) {
+                  cards.add(new BingoCard(tracker)); // Generate cards
+            }
+      }
+      
+      public void displayCards() {
+            System.out.println(name + "'s Bingo Cards:");
+            for (int i = 0; i < cards.size(); i++) {
+                  System.out.println("Card " + (i + 1) + ":");
+                  cards.get(i).displayCard();
+                  System.out.println(); // Space between cards
+            }
       }
       
 }

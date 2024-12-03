@@ -26,9 +26,8 @@ public class ScreenUtils {
    }
    
    public static String getStringInput() {
-      return scanner.nextLine();
+      return scanner.nextLine().trim();
    }
-   
    
    
    
