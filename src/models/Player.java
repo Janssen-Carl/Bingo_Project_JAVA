@@ -1,61 +1,33 @@
 package models;
 
-
-import java.util.List;
-
-public class Player{
-      String name;
-      int score;
-      private Card card;
-      
-      // Constructor
-      public Player(String name, Card card) {
-            this.name = name;
-            this.score = 0;
-            this.card = card;
-      }
+public class Player {
+      private String name;
+      private final BingoCard[] cards;
       
       public Player(){
             this.name = "Player";
-            this.score = 0;
+            this.cards = new BingoCard[1];
+            cards[0] = new BingoCard();
       }
       
-      public Player(String name){
+      public Player(String name, int numCards) {
             this.name = name;
-            this.score = 0;
+            this.cards = new BingoCard[numCards];
+            for (int i = 0; i < numCards; i++) {
+                  cards[i] = new BingoCard();
+            }
       }
       
-      // Getters
-      public String getName(){
-            return this.name;
+      public String getName() {
+            return name;
       }
       
-      public int getScore(){
-            return this.score;
+      public BingoCard[] getCards() {
+            return cards;
       }
       
-      public Card getCard(){
-            return this.card;
-      }
-      
-      
-      // Setters
-      public void setScore(int score){
-            this.score = score;
-      }
-      
-      public void setName(String name){
+      public String setName(String name) {
             this.name = name;
       }
-      
-      public void setCard(Card card){
-            this.card = card;
-      }
-      
-      public void setCards(List<int[][]> cards) {
-            this.card.setCards(cards);
-      }
-      
-      
       
 }

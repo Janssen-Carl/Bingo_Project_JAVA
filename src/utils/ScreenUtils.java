@@ -1,42 +1,38 @@
 package utils;
 
-import java.io.IOException;
 import java.util.Scanner;
 
 public class ScreenUtils {
+   private static final Scanner scanner = new Scanner(System.in);
    
-   //clear screen
    public static void clearScreen() {
-      try {
-         if (System.getProperty("os.name").contains("Windows")) {
-            new ProcessBuilder("cmd", "/c", "cls").inheritIO().start().waitFor();
-         } else {
-            System.out.print("\033[H\033[2J");
-            System.out.flush();
-         }
-      } catch (IOException | InterruptedException ex) {
-         System.err.println("Error clearing the screen: " + ex.getMessage());
-      }
-      
-      newLine();
+      System.out.print("\033[H\033[2J");
+      System.out.flush();
    }
    
-   //waits and Enter key press
    public static void waitForEnter() {
-      System.out.print("Press Enter to continue...");
-      try {
-         System.in.read(); // Reads a single byte from the input stream
-      } catch (IOException e) {
-         System.err.println("Error waiting for Enter key: " + e.getMessage());
-      }
+      System.out.println("Press Enter to continue...");
+      scanner.nextLine();
    }
    
-   //flushes input stream
-   public static void flushInputStream(Scanner scanner) {
-      if (scanner.hasNextLine()) {
-         scanner.nextLine();
+   public static int getIntInput() {
+      while (!scanner.hasNextInt()) {
+         System.out.println("Invalid input. Enter a number:");
+         scanner.next();
       }
+      int input = scanner.nextInt();
+      scanner.nextLine(); // Consume leftover newline
+      return input;
    }
+   
+   public static String getStringInput() {
+      return scanner.nextLine();
+   }
+   
+   
+   
+   
+   
    
    public static void newLine() {
       System.out.println();
