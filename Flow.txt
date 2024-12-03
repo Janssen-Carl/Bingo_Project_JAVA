@@ -1,0 +1,250 @@
+BINGO GAME FLOW
+
+-- BINGO GAME --
+
+clear screen
+
+-- MAIN MENU --
+1. Play
+2. Instructions
+3. Leaderboard
+4. Exit
+
+Enter your choice:
+
+if 2 Display Instructions text press ENTER to go back
+if 3 Display Leaderboard text press ENTER to go back
+if 4 Terminate Program
+
+if 1 is selected
+        clear screen
+        -- PLAY GAME --
+        1. Player vs Player
+        2. Player vs Computer
+        3. Back
+
+        Enter your choice:
+
+        if 1 is selected
+            clear screen
+            -- PLAYER VS PLAYER --
+            Enter Player 1 name:
+            Enter Player 2 name:
+            clear screen
+
+            -- PLAYER VS PLAYER --
+            -- BINGO CARD --
+            1. 1 Card
+            2. 2 Cards
+            3. Input Number of Cards (Max 10):
+            Enter your choice:
+                if 1 or 2 is selected
+                    clear screen
+
+                    -- PLAYER VS PLAYER --
+                    -- BINGO CARD --
+                    Player 1 name's cards:
+                    Generate Bingo Cards
+                    Display Bingo Cards
+
+                    are you satisfied with the cards? (Y/N)
+                        if Y continue
+                        if N regenerate cards (loop until Y)
+
+                    clear screen
+
+                    -- PLAYER VS PLAYER --
+                    -- BINGO CARD --
+                    Player 2 name's cards:
+                    Generate Bingo Cards
+                    Display Bingo Cards
+
+                    are you satisfied with the cards? (Y/N)
+                        if Y continue
+                        if N regenerate cards (loop until Y)
+
+                    clear screen
+
+                    press ENTER to continue
+                    GO TO PATTERN SELECTION LOOP
+
+
+                if 3 is selected
+                    clear screen
+
+                    -- PLAYER VS PLAYER --
+                    -- BINGO CARD --
+                    Player 1 name's cards:
+                    Generate Bingo Cards
+                    Display Bingo Cards
+
+                    are you satisfied with the cards? (Y/N)
+                        if Y continue
+                        if N regenerate cards (loop until Y)
+
+                    clear screen
+
+                    -- PLAYER VS PLAYER --
+                    -- BINGO CARD --
+                    Player 2 name's cards:
+                    Generate Bingo Cards
+                    Display Bingo Cards
+
+                    are you satisfied with the cards? (Y/N)
+                        if Y continue
+                        if N regenerate cards (loop until Y)
+
+                    clear screen
+
+                    press ENTER to continue
+                    GO TO PATTERN SELECTION LOOP
+
+        if 2 is selected
+            clear screen
+            -- PLAYER VS COMPUTER --
+            -- BINGO CARD --
+            1. 1 Card
+            2. 2 Cards
+            3. Input Number of Cards (Max 10):
+
+            Enter your choice:
+                if 1 or 2 is selected
+                    clear screen
+
+                    -- PLAYER VS COMPUTER --
+                    -- BINGO CARD --
+                    Player 1 name's cards:
+                    Generate Bingo Cards
+                    Display Bingo Cards
+
+                    are you satisfied with the cards? (Y/N)
+                        if Y continue
+                        if N regenerate cards (loop until Y)
+
+                    clear screen
+
+                    -- PLAYER VS COMPUTER --
+                    -- BINGO CARD --
+                    Computer's cards:
+                    Generate Bingo Cards
+                    Display Bingo Cards
+
+                    clear screen
+
+                    press ENTER to start the game
+                    GO TO PATTERN SELECTION LOOP
+
+
+                if 3 is selected
+                    clear screen
+
+                    -- PLAYER VS COMPUTER --
+                    -- BINGO CARD --
+                    Player 1 name's cards:
+                    Generate Bingo Cards
+                    Display Bingo Cards
+
+                    are you satisfied with the cards? (Y/N)
+                        if Y continue
+                        if N regenerate cards (loop until Y)
+
+                    clear screen
+
+                    -- PLAYER VS COMPUTER --
+                    -- BINGO CARD --
+                    Computer's cards:
+                    Generate Bingo Cards
+                    Display Bingo Cards
+
+                    clear screen
+
+                    press ENTER to start the game
+                    GO TO PATTERN SELECTION LOOP
+
+
+
+            // PATTERN SELECTION LOOP
+
+            clear screen
+
+            -- PATTERN SELECTION --
+            1. Line Pattern (Horizontal/Vertical/Diagonal)
+            2. Four Corners
+            3. Full Card
+            4. Generate Random Pattern
+            5. Custom Pattern
+
+            Enter your choice:
+                if 1 is selected
+                    Pattern = Line Pattern
+                if 2 is selected
+                    Pattern = Four Corners
+                if 3 is selected
+                    Pattern = Full Card
+                if 4 is selected
+                    Pattern = Generate Random Pattern
+                if 5 is selected
+                    Pattern = Custom Pattern
+                    Enter Custom Pattern:
+
+            clear screen
+
+            Pattern:
+
+            Display Pattern
+
+            press ENTER to start the game
+            PROCEED TO GAME LOOP
+
+
+            // GAME LOOP
+            -- GAME START --
+
+            while True
+                /* Loop Display
+
+                 -- BINGO GAME --
+                 -- GAME MODE -- ( PLAYER VS PLAYER / PLAYER VS COMPUTER )
+                 -- PATTERN --
+
+                 Numbers Drawn:
+                    Display Numbers Drawn
+
+                 PLAYER 1: Player 1 name
+                 display bingo cards
+
+                 PLAYER 2: Player 2 name
+                 display bingo cards
+
+                 press ENTER to draw a number
+
+                 */
+
+                draws a number
+
+                Check if number is in Bingo Card
+                    if yes
+                        mark number in Bingo Card
+                        update the display
+                        check if pattern is complete
+                            if yes
+                                break
+                    if no
+                        continue
+
+                Loop until pattern is complete
+
+                Display Winner
+
+                press ENTER to continue
+
+                calculate score
+                show score
+                ask if player wants to save score
+                    if yes
+                        save score
+                        add to leaderboards
+                    if no
+                        continue
+
+

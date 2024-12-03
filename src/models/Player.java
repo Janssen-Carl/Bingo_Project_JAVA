@@ -8,6 +8,7 @@ public class Player{
       int score;
       private Card card;
       
+      // Constructor
       public Player(String name, Card card) {
             this.name = name;
             this.score = 0;
@@ -24,6 +25,7 @@ public class Player{
             this.score = 0;
       }
       
+      // Getters
       public String getName(){
             return this.name;
       }
@@ -32,16 +34,18 @@ public class Player{
             return this.score;
       }
       
+      public Card getCard(){
+            return this.card;
+      }
+      
+      
+      // Setters
       public void setScore(int score){
             this.score = score;
       }
       
       public void setName(String name){
             this.name = name;
-      }
-      
-      public Card getCard(){
-            return this.card;
       }
       
       public void setCard(Card card){
@@ -51,4 +55,7 @@ public class Player{
       public void setCards(List<int[][]> cards) {
             this.card.setCards(cards);
       }
+      
+      
+      
 }
