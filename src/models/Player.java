@@ -7,14 +7,13 @@ public class Player {
       public Player(){
             this.name = "Player";
             this.cards = new BingoCard[1];
-            cards[0] = new BingoCard();
       }
       
-      public Player(String name, int numCards) {
+      public Player(String name, int numCards, NumberTracker tracker) {
             this.name = name;
             this.cards = new BingoCard[numCards];
             for (int i = 0; i < numCards; i++) {
-                  cards[i] = new BingoCard();
+                  this.cards[i] = new BingoCard(tracker); // Use the shared tracker
             }
       }
       
@@ -26,7 +25,7 @@ public class Player {
             return cards;
       }
       
-      public String setName(String name) {
+      public void setName(String name) {
             this.name = name;
       }
       

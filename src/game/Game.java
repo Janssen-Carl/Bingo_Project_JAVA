@@ -34,17 +34,21 @@ public class Game {
    private static void startPlayerVsPlayer() {
 //      System.out.print("PLayer vs Player");
 //      ScreenUtils.waitForEnter();
+      
+      
       Player player1 = new Player();
       Player player2 = new Player();
       
       System.out.println("PLAYER VS PLAYER");
-      System.out.println("Enter Player 1's name:");
-      player1.setName(ScreenUtils.getStringInput());
+      System.out.print("Enter Player 1's name:  ");
+      String player1Name = ScreenUtils.getStringInput();
+      player1.setName(player1Name);
       
-      System.out.println("Enter Player 2's name:");
-      player2.setName(ScreenUtils.getStringInput());
+      System.out.print("Enter Player 2's name:  ");
+      String player2Name = ScreenUtils.getStringInput();
+      player2.setName(player2Name);
       
-      System.out.println(player1.getName() + "  vs  " + player2.getName());
+      System.out.println(player1.getName() + " vs " + player2.getName());
       System.out.println("BINGO CARD");
       System.out.println("1. 1 Card");
       System.out.println("2. 2 Cards");
@@ -52,8 +56,25 @@ public class Game {
       
       System.out.print("Enter your choice: ");
       int numCards = ScreenUtils.getIntInput();
+      if (numCards == 1) {
+         player1 = new Player(player1Name, 1);
+         
+         // how do i generate cards?
+         
+         player2 = new Player(player2Name, 1);
+         
+         
+      } else if (numCards == 2) {
+         player1 = new Player(player1Name, 2);
+         player2 = new Player(player2Name, 2);
+      } else {
+         System.out.print("Enter number of cards: ");
+         int cards = ScreenUtils.getIntInput();
+         player1 = new Player(player1Name, cards);
+         player2 = new Player(player2Name, cards);
+      }
       
-      
+      ScreenUtils.waitForEnter();
    }
    
    private static void startPlayerVsComputer() {
