@@ -23,8 +23,8 @@ public class BingoCard {
             }
             int number;
             do {
-               number = random.nextInt(15) + 1 + (col * 15); // Column-specific range
-            } while (tracker.isNumberUsed(number)); // Avoid duplicates
+               number = random.nextInt(15) + 1 + (col * 15);
+            } while (tracker.isNumberUsed(number));
             tracker.markNumber(number);
             numbers[row][col] = number;
          }
@@ -35,8 +35,8 @@ public class BingoCard {
       for (int row = 0; row < 5; row++) {
          for (int col = 0; col < 5; col++) {
             if (numbers[row][col] == number) {
-               marked[row][col] = true;  // Mark the number
-               // Calculate the index in a 1D representation of the card
+               marked[row][col] = true;
+               // calculate the index in a 1D representation of the card
                return row * 5 + col;
             }
          }

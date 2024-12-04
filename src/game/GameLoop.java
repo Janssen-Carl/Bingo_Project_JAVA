@@ -19,7 +19,6 @@ public class GameLoop {
    public static void startGame(List<Player> players, Pattern pattern, boolean flag) {
       Random random = new Random();
       
-      System.out.println("BINGO GAME");
       while (gameRunning) {
          ScreenUtils.clearScreen();
          if (numDrawn >= MAX_BINGO_CHIPS) {
@@ -28,11 +27,13 @@ public class GameLoop {
          }
          
          ScreenUtils.clearScreen();
+         System.out.println("B I N G O  G A M E");
          
          if (flag) {
-            RandomPattern.displayPattern(); // Display the generated pattern
+            RandomPattern.displayPattern();
             System.out.println();
          }
+         
          int drawnChip = drawBingoChip(random);
          drawnChips.add(drawnChip);
          numDrawn++;
@@ -65,7 +66,7 @@ public class GameLoop {
    private static void displayDrawnChips() {
       System.out.println("Drawn Chips: ");
       for (int i = 0; i < drawnChips.size(); i++) {
-         if (i > 0 && i % 25 == 0) System.out.println(); // Newline every 10 numbers
+         if (i > 0 && i % 28 == 0) System.out.println();
          System.out.printf("%3d ", drawnChips.get(i));
       }
       System.out.println("\n\nMost Recent Chip: " + drawnChips.get(drawnChips.size() - 1));
@@ -73,9 +74,8 @@ public class GameLoop {
    
    private static void updatePlayerCards(List<Player> players, int drawnChip, Pattern pattern) {
       for (Player player : players) {
-         player.markNumber(drawnChip); // Mark the number in the player's card
+         player.markNumber(drawnChip);
          
-         // Check if the player's marked indices match the pattern
          if (pattern.matches(player.getMarkedIndices()) && !winners.contains(player)) {
             winners.add(player);
          }
@@ -86,7 +86,7 @@ public class GameLoop {
    private static void displayPlayerCards(List<Player> players) {
       for (Player player : players) {
          System.out.println(player.getName() + ":");
-         player.displayCard(); // The `displayCard` method handles coloring for marked numbers
+         player.displayCard();
          System.out.println();
       }
       

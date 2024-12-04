@@ -16,12 +16,13 @@ public class Game {
    
    public static void start() {
       ScreenUtils.clearScreen();
-      System.out.println("Select Game Mode:");
-      System.out.println("1. Player vs Player");
-      System.out.println("2. Player vs Computer");
-      System.out.println("3. Back");
+      ScreenUtils.newLine();
+      ScreenUtils.displayWithDelay("\t\t\t\tS E L E C T  G A M E  M O D E");
+      System.out.println("\t\t\t\t [1] Player vs Player");
+      System.out.println("\t\t\t\t [2] Player vs Computer");
+      System.out.println("\t\t\t\t [3] Back");
       
-      System.out.print("\nEnter your choice: ");
+      System.out.print("\n\t\t\t\t Enter your choice: ");
       int mode = ScreenUtils.getIntInput();
       
       switch (mode) {
@@ -29,8 +30,8 @@ public class Game {
          case 2 -> startPlayerVsComputer();
          case 3 -> {
             ScreenUtils.clearScreen();
-            System.out.println("Returning to main menu...");
-            ScreenUtils.waitForEnter();
+            ScreenUtils.newLine();
+            ScreenUtils.displayWithDelay("\t\t\t\tReturning to main menu...");
          }
          default -> {
             System.out.println("Invalid choice.");
@@ -48,11 +49,12 @@ public class Game {
       Player player2 = new Player();
       
       ScreenUtils.clearScreen();
-      System.out.println("PLAYER VS PLAYER");
-      System.out.print("Enter Player 1's name: ");
+      ScreenUtils.newLine();
+      System.out.println("\t\t\t\tP L A Y E R  V S  P L A Y E R");
+      System.out.print("\n\t\t\t\t Enter Player 1's name: ");
       player1.setName(ScreenUtils.getStringInput());
       
-      System.out.print("Enter Player 2's name: ");
+      System.out.print("\t\t\t\t Enter Player 2's name: ");
       player2.setName(ScreenUtils.getStringInput());
       
       ScreenUtils.clearScreen();
@@ -65,15 +67,15 @@ public class Game {
       System.out.println(player1.getName() + "'s card:");
       player1.displayCard();
       
+      System.out.println();
+      
       System.out.println(player2.getName() + "'s card:");
       player2.displayCard();
       
       Pattern pattern = selectPattern();
       
-      // Proceed to gameplay
-      ScreenUtils.waitForEnter("\nPress Enter to start the game...");
+      ScreenUtils.displayWithDelay("\nLoading Game... Drawing first Chip.\n");
       
-      // Game loop
       List<Player> players = new ArrayList<>();
       
       players.add(player1);
@@ -104,7 +106,7 @@ public class Game {
             return new FullCardPattern();
          case 4:
             RandomPattern randomPattern = new RandomPattern();
-            RandomPattern.displayPattern(); // Display the generated pattern
+            RandomPattern.displayPattern();
             flag = true;
             return randomPattern;
          default:
@@ -117,10 +119,12 @@ public class Game {
       NumberTracker tracker = new NumberTracker();
       Player player = new Player();
       
-      System.out.println("PLAYER VS COMPUTER");
-      System.out.print("Enter Player's name: ");
+      ScreenUtils.clearScreen();
+      System.out.println("\t\t\t\tP L A Y E R  V S  C O M P U T E R");
+      System.out.print("\n\t\t\t\t Enter Player's name: ");
       player.setName(ScreenUtils.getStringInput());
       
+      ScreenUtils.clearScreen();
       System.out.println(player.getName() + " vs Computer");
       
       System.out.println();
@@ -131,15 +135,15 @@ public class Game {
       System.out.println(player.getName() + "'s card:");
       player.displayCard();
       
+      System.out.println();
+      
       System.out.println(computer.getName() + "'s card:");
       computer.displayCard();
       
       Pattern pattern = selectPattern();
       
-      // Proceed to gameplay
-      ScreenUtils.waitForEnter("\nLoading Game...\nPress Enter to start the game...");
+      ScreenUtils.displayWithDelay("\nLoading Game...\n");
       
-      // Game loop
       List<Player> participants = new ArrayList<>();
       participants.add(player);
       
@@ -169,14 +173,18 @@ public class Game {
    
    public static void exitGame() {
       ScreenUtils.clearScreen();
-      System.out.println("Exiting the game. Goodbye!");
+      ScreenUtils.newLine();
+      ScreenUtils.displayWithDelay("\t\t\t\tExiting the game. \n\t\t\t\tGoodbye!");
+      ScreenUtils.clearScreen();
       System.exit(0);
    }
    
    public static void displayInstructions() {
       ScreenUtils.clearScreen();
-      System.out.println("Instructions:\nPlay Bingo and achieve the pattern to win!");
-      ScreenUtils.waitForEnter();
+      ScreenUtils.newLine();
+      System.out.println("\t\t\tInstructions:\n\t\t\t " +
+              "Play Bingo and achieve the pattern to win!");
+      ScreenUtils.waitForEnter("\n\n\t\t\t Press ENTER to return to the main menu...");
    }
    
 }

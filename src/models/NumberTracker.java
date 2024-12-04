@@ -1,16 +1,14 @@
 package models;
 
-//import java.util.Random;
 
 public class NumberTracker {
-   private final int[] numberTracker = new int[75]; // 0-based array for 1-75 numbers
+   private final int[] numberTracker = new int[75];
    
-   // Mark a number as used
    public void markNumber(int number) {
       if (number < 1 || number > 75) {
          throw new IllegalArgumentException("Number must be between 1 and 75.");
       }
-      numberTracker[number - 1] = 1; // Mark index (number - 1) as used
+      numberTracker[number - 1] = 1;
    }
    
    // Check if a number is already used

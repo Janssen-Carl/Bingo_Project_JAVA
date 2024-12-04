@@ -26,7 +26,7 @@ public class ScreenUtils {
          scanner.next();
       }
       int input = scanner.nextInt();
-      scanner.nextLine(); // Consume leftover newline
+      scanner.nextLine();
       return input;
    }
    
@@ -34,28 +34,27 @@ public class ScreenUtils {
       return scanner.nextLine().trim();
    }
    
-   
-   
-   
-   
-   public static void newLine() {
-      System.out.println();
-      System.out.println();
-      System.out.println();
-      System.out.println();
-   }
-   
-   public static boolean getYesOrNoInput() {
-      String input;
-      while (true) {
-         input = scanner.nextLine().trim().toLowerCase();
-         if (input.equals("yes") || input.equals("y")) {
-            return true;
-         } else if (input.equals("no") || input.equals("n")) {
-            return false;
-         } else {
-            System.out.println("Invalid input. Enter 'yes' or 'no':");
+   public static void displayWithDelay(String message) {
+      
+      int delayMillis = 80;
+      
+      for (char ch : message.toCharArray()) {
+         System.out.print(ch);
+         try {
+            Thread.sleep(delayMillis);
+         } catch (InterruptedException e) {
+            Thread.currentThread().interrupt();
+            System.out.println("\nError in delay: " + e.getMessage());
          }
       }
+      System.out.println();
    }
+   
+   public static void newLine() {
+      System.out.println("\n\n\n");
+   }
+   
+   
+
+   
 }
