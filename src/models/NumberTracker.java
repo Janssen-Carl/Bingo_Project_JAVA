@@ -21,14 +21,7 @@ public class NumberTracker {
       return numberTracker[number - 1] == 1;
    }
    
-//   // Generate a random unused number
-//   public int generateRandomNumber() {
-//      Random random = new Random();
-//      int number;
-//      do {
-//         number = random.nextInt(75) + 1; // Generate a number between 1 and 75
-//      } while (isNumberUsed(number)); // Repeat if the number is already used
-//      markNumber(number); // Mark the number as used
-//      return number;
-//   }
+   
+   
+   
 }

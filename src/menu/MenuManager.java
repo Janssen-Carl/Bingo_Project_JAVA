@@ -15,7 +15,7 @@ public class MenuManager {
             System.out.println("Main Menu");
             System.out.println("1. Play");
             System.out.println("2. Instructions");
-            System.out.println("3. Exit");
+            System.out.println("3. Exit\n");
             System.out.print("Enter your choice: ");
             
             choice = ScreenUtils.getIntInput();

@@ -22,14 +22,13 @@ public class Player {
       
       public void setName(String name) {
             this.name = name;
+            
+            if(name.isEmpty()){
+                  this.name = "Player";
+            }
       }
       
-      public BingoCard getCard() {
-            return card;  // Return the BingoCard object itself
-      }
 
-      
-      
       public void generateCard(NumberTracker tracker) {
             this.card = new BingoCard(tracker); // Generate a single Bingo card
       }

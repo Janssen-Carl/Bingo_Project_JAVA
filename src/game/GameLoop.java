@@ -3,6 +3,7 @@ package game;
 import models.Player;
 import patterns.Pattern;
 import utils.ScreenUtils;
+import patterns.RandomPattern;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -15,23 +16,31 @@ public class GameLoop {
    private static final List<Integer> drawnChips = new ArrayList<>();
    private static final List<Player> winners = new ArrayList<>();
    
-   public static void startGame(List<Player> players, Pattern pattern) {
+   public static void startGame(List<Player> players, Pattern pattern, boolean flag) {
       Random random = new Random();
       
+      System.out.println("BINGO GAME");
       while (gameRunning) {
+         ScreenUtils.clearScreen();
          if (numDrawn >= MAX_BINGO_CHIPS) {
             System.out.println("All chips have been drawn. Ending game.");
             break;
          }
          
          ScreenUtils.clearScreen();
+         
+         if (flag) {
+            RandomPattern.displayPattern(); // Display the generated pattern
+            System.out.println();
+         }
          int drawnChip = drawBingoChip(random);
          drawnChips.add(drawnChip);
          numDrawn++;
          
-         displayDrawnChips();
          updatePlayerCards(players, drawnChip, pattern);
          displayPlayerCards(players);
+         
+         displayDrawnChips();
          
          if (!winners.isEmpty()) {
             gameRunning = false;
@@ -40,8 +49,7 @@ public class GameLoop {
          }
          
          if (gameRunning) {
-            System.out.println("Press ENTER to draw the next chip.");
-            ScreenUtils.waitForEnter();
+            ScreenUtils.waitForEnter("\nPress ENTER to draw the next chip.");
          }
       }
    }
@@ -57,7 +65,7 @@ public class GameLoop {
    private static void displayDrawnChips() {
       System.out.println("Drawn Chips: ");
       for (int i = 0; i < drawnChips.size(); i++) {
-         if (i > 0 && i % 10 == 0) System.out.println(); // Newline every 10 numbers
+         if (i > 0 && i % 25 == 0) System.out.println(); // Newline every 10 numbers
          System.out.printf("%3d ", drawnChips.get(i));
       }
       System.out.println("\n\nMost Recent Chip: " + drawnChips.get(drawnChips.size() - 1));
@@ -77,15 +85,20 @@ public class GameLoop {
    
    private static void displayPlayerCards(List<Player> players) {
       for (Player player : players) {
-         System.out.println("Player: " + player.getName());
+         System.out.println(player.getName() + ":");
          player.displayCard(); // The `displayCard` method handles coloring for marked numbers
+         System.out.println();
       }
+      
    }
    
    private static void displayWinners() {
-      System.out.println("Bingo! We have winners!");
+      System.out.println("Bingo! We have a winner!");
       for (Player winner : winners) {
          System.out.println("Winner: " + winner.getName());
+         
+         ScreenUtils.waitForEnter("\nPress ENTER to exit...");
+         Game.exitGame();
       }
    }
 }

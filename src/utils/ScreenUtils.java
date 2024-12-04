@@ -11,12 +11,12 @@ public class ScreenUtils {
    }
    
    public static void waitForEnter() {
-      System.out.println("Press Enter to continue...");
+      System.out.print("Press Enter to continue...");
       scanner.nextLine();
    }
    
    public static void waitForEnter(String message) {
-      System.out.println(message);
+      System.out.print(message);
       scanner.nextLine();
    }
    
@@ -43,5 +43,19 @@ public class ScreenUtils {
       System.out.println();
       System.out.println();
       System.out.println();
+   }
+   
+   public static boolean getYesOrNoInput() {
+      String input;
+      while (true) {
+         input = scanner.nextLine().trim().toLowerCase();
+         if (input.equals("yes") || input.equals("y")) {
+            return true;
+         } else if (input.equals("no") || input.equals("n")) {
+            return false;
+         } else {
+            System.out.println("Invalid input. Enter 'yes' or 'no':");
+         }
+      }
    }
 }

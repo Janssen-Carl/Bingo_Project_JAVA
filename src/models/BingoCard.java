@@ -1,8 +1,6 @@
 package models;
 
-import java.util.HashSet;
 import java.util.Random;
-import java.util.Set;
 
 public class BingoCard {
    private final int[][] numbers;
@@ -33,16 +31,6 @@ public class BingoCard {
       }
    }
    
-   public void markNumber(int number) {
-      for (int row = 0; row < 5; row++) {
-         for (int col = 0; col < 5; col++) {
-            if (numbers[row][col] == number) {
-               marked[row][col] = true;
-            }
-         }
-      }
-   }
-   
    public int markNumberAndReturnIndex(int number) {
       for (int row = 0; row < 5; row++) {
          for (int col = 0; col < 5; col++) {
@@ -56,21 +44,8 @@ public class BingoCard {
       return -1; // Return -1 if the number isn't found on the card
    }
    
-   public Set<Integer> getMarkedIndices() {
-      Set<Integer> markedIndices = new HashSet<>();
-      for (int row = 0; row < SIZE; row++) {
-         for (int col = 0; col < SIZE; col++) {
-            if (marked[row][col]) {
-               // Calculate the index and add to the set
-               markedIndices.add(row * 5 + col);  // The index in the 1D representation
-            }
-         }
-      }
-      return markedIndices;
-   }
-   
-   
    public void displayCard() {
+      System.out.println(" B  I  N  G  O ");
       for (int row = 0; row < 5; row++) {
          for (int col = 0; col < 5; col++) {
             if (marked[row][col]) {
@@ -82,10 +57,6 @@ public class BingoCard {
          }
          System.out.println();
       }
-   }
-   
-   public boolean[][] getMarked() {
-      return marked;
    }
    
 }
