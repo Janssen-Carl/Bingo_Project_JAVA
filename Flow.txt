@@ -1,0 +1,191 @@
+BINGO GAME FLOW
+
+-- BINGO GAME --
+
+clear screen
+
+-- MAIN MENU --
+1. Play
+2. Instructions
+3. Leaderboard
+4. Exit
+
+Enter your choice:
+
+if 2 Display Instructions text press ENTER to go back
+if 3 Display Leaderboard text press ENTER to go back
+if 4 Terminate Program
+
+if 1 is selected
+        clear screen
+        -- PLAY GAME --
+        1. Player vs Player
+        2. Player vs Computer
+        3. Back
+
+        Enter your choice:
+
+        if 1 is selected
+            clear screen
+            -- PLAYER VS PLAYER --
+            Enter Player 1 name:
+            Enter Player 2 name:
+            clear screen
+
+            -- PLAYER VS PLAYER --
+            -- BINGO CARD --
+                    clear screen
+
+                    -- PLAYER VS PLAYER --
+                    -- BINGO CARD --
+                    Player 1 name's cards:
+                    Generate Bingo Cards
+                    Display Bingo Cards
+
+                    are you satisfied with the card? (Y/N)
+                        if Y continue
+                        if N regenerate cards (loop until Y)
+
+        if 2 is selected
+            clear screen
+            -- PLAYER VS COMPUTER --
+            -- BINGO CARD --
+                    Player 1 name's cards:
+                    Generate Bingo Cards
+                    Display Bingo Cards
+
+                    are you satisfied with the card? (Y/N)
+                        if Y continue
+                        if N regenerate cards (loop until Y)
+
+
+            // PATTERN SELECTION LOOP
+
+            clear screen
+
+            -- PATTERN SELECTION --
+            1. Line Pattern (Horizontal/Vertical/Diagonal)
+            2. Four Corners
+            3. Full Card
+            4. Generate Random Pattern
+
+            Enter your choice:
+                if 1 is selected
+                    Pattern = Line Pattern
+                if 2 is selected
+                    Pattern = Four Corners
+                if 3 is selected
+                    Pattern = Full Card
+                if 4 is selected
+                    Pattern = Generate Random Pattern
+                if 5 is selected
+                    Pattern = Custom Pattern
+                    Enter Custom Pattern:
+
+            clear screen
+
+            Pattern:
+
+            Display Pattern
+
+            press ENTER to start the game
+            PROCEED TO GAME LOOP
+
+
+            // GAME LOOP
+            -- GAME START --
+
+            while True
+                /* Loop Display
+
+                 -- BINGO GAME --
+                 -- GAME MODE -- ( PLAYER VS PLAYER / PLAYER VS COMPUTER )
+                 -- PATTERN --
+
+                 Numbers Drawn:
+                    Display Numbers Drawn
+
+                 PLAYER 1: Player 1 name
+                 display bingo cards
+
+                 PLAYER 2: Player 2 name
+                 display bingo cards
+
+                 press ENTER to draw a number
+
+                 */
+
+                draws a number
+
+                Check if number is in Bingo Card
+                    if yes
+                        mark number in Bingo Card
+                        update the display
+                        check if pattern is complete
+                            if yes
+                                break
+                    if no
+                        continue
+
+                Loop until pattern is complete
+
+                Display Winner
+
+                press ENTER to continue
+
+                calculate score
+                show score
+                ask if player wants to save score
+                    if yes
+                        save score
+                        add to leaderboards
+                    if no
+                        continue
+
+
+/*
+everytime a check on the bingo card happens, the index of it should be stored on an array
+that array will then be used to compare to the index arrays of the pattern chosen
+
+for example line pattern
+one of the index array will be [0, 1, 2, 3, 4] which is the top row of the bingo card
+
+it will then be compared to the index array of the bingo card that was stored
+if all matched then bingo
+
+
+use this index for checking of pattern match to the bingo cards
+card index
+0  1  2  3  4
+5  6  7  8  9
+10 11 12 13 14
+15 16 17 18 19
+20 21 22 23 24
+
+
+LINEPATTERN =  0 1 2 3 4
+               5 6 7 8 9
+               10 11 12 13 14
+               15 16 17 18 19
+               20 21 22 23 24
+
+               0 5 10 15 20
+               1 6 11 16 21
+               2 7 12 17 22
+               3 8 13 18 23
+               4 9 14 19 24
+
+               0 6 12 18 24
+               4 8 12 16 20
+
+FULLCARDPATTERN = 0  1  2  3  4
+                  5  6  7  8  9
+                  10 11 12 13 14
+                  15 16 17 18 19
+                  20 21 22 23 24
+
+FOURCORNERSPATTER = 0 4 20 24
+
+RANDOMPATTERN = generate random numbers from 0 to 24 and it will be the on
+                  used for checking
+ */

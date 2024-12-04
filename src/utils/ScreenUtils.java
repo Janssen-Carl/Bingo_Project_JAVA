@@ -1,39 +1,60 @@
 package utils;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
 import java.util.Scanner;
 
 public class ScreenUtils {
+   private static final Scanner scanner = new Scanner(System.in);
    
-   //clear screen
    public static void clearScreen() {
-      try {
-         if (System.getProperty("os.name").contains("Windows")) {
-            new ProcessBuilder("cmd", "/c", "cls").inheritIO().start().waitFor();
-         } else {
-            System.out.print("\033[H\033[2J");
-            System.out.flush();
-         }
-      } catch (IOException | InterruptedException ex) {
-         System.err.println("Error clearing the screen: " + ex.getMessage());
-      }
+      System.out.print("\033[H\033[2J");
+      System.out.flush();
    }
    
-   //waits and Enter key press
    public static void waitForEnter() {
-      System.out.println("Press Enter to continue...");
-      try (BufferedReader reader = new BufferedReader(new InputStreamReader(System.in))) {
-         reader.readLine();
-      } catch (IOException e) {
-         System.err.println("Error reading input: " + e.getMessage());
-      }
-   }
-   
-   //flushes input stream
-   public static void flushInputStream(Scanner scanner) {
+      System.out.print("Press Enter to continue...");
       scanner.nextLine();
    }
+   
+   public static void waitForEnter(String message) {
+      System.out.print(message);
+      scanner.nextLine();
+   }
+   
+   public static int getIntInput() {
+      while (!scanner.hasNextInt()) {
+         System.out.println("Invalid input. Enter a number:");
+         scanner.next();
+      }
+      int input = scanner.nextInt();
+      scanner.nextLine();
+      return input;
+   }
+   
+   public static String getStringInput() {
+      return scanner.nextLine().trim();
+   }
+   
+   public static void displayWithDelay(String message) {
+      
+      int delayMillis = 80;
+      
+      for (char ch : message.toCharArray()) {
+         System.out.print(ch);
+         try {
+            Thread.sleep(delayMillis);
+         } catch (InterruptedException e) {
+            Thread.currentThread().interrupt();
+            System.out.println("\nError in delay: " + e.getMessage());
+         }
+      }
+      System.out.println();
+   }
+   
+   public static void newLine() {
+      System.out.println("\n\n\n");
+   }
+   
+   
+
    
 }
